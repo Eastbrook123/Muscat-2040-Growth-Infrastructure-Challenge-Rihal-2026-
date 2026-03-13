@@ -1,0 +1,115 @@
+:root {
+  --bg: #0B1220;
+  --panel: #0F1A2E;
+  --panel2: #0B1730;
+  --text: #E5E7EB;
+  --muted: rgba(229, 231, 235, 0.70);
+  --muted2: rgba(229, 231, 235, 0.55);
+  --stroke: rgba(255,255,255,0.10);
+  --stroke2: rgba(255,255,255,0.14);
+  --primary: #7C3AED;
+  --primary2: #A78BFA;
+  --good: #22C55E;
+  --warn: #F59E0B;
+  --bad: #EF4444;
+  --low: #60A5FA;
+  --base: #A78BFA;
+  --high: #F472B6;
+}
+
+/* Global spacing */
+.block-container {
+  padding-top: 1.1rem;
+  padding-bottom: 2.25rem;
+  max-width: 1200px;
+}
+
+/* Remove Streamlit chrome */
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+header { visibility: hidden; }
+
+/* Hero */
+.hero {
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.25), rgba(96,165,250,0.12) 38%, rgba(244,114,182,0.10));
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+}
+.hero-title {
+  font-size: 28px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  margin: 0 0 2px 0;
+  line-height: 1.1;
+}
+.hero-sub {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 4px 0 0 0;
+}
+.hero-badges {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: rgba(15, 26, 46, 0.55);
+  color: var(--text);
+  font-size: 12px;
+}
+.dot { width: 8px; height: 8px; border-radius: 999px; background: var(--primary); }
+.dot.low { background: var(--low); }
+.dot.base { background: var(--base); }
+.dot.high { background: var(--high); }
+
+/* KPI cards */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.kpi {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--stroke);
+  background: rgba(15,26,46,0.72);
+}
+.kpi .label {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.kpi .value {
+  font-size: 22px;
+  font-weight: 760;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.kpi .delta {
+  color: var(--muted2);
+  font-size: 12px;
+}
+
+/* Sidebar polish */
+section[data-testid="stSidebar"] {
+  border-right: 1px solid var(--stroke);
+}
+section[data-testid="stSidebar"] .stMarkdown p {
+  color: var(--muted);
+}
+
+/* Tabs */
+button[role="tab"] {
+  border-radius: 999px !important;
+  padding: 8px 12px !important;
+}
+

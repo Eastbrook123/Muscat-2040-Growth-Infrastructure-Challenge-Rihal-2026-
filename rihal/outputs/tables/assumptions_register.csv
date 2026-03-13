@@ -1,0 +1,14 @@
+section,assumption,value
+population_projection,cagr_2002_2022,0.052706051
+population_projection,omani_cagr_2022_2024,0.032498207
+population_projection,expat_cagr_2022_2024,0.005653664
+population_projection,blend_recent_weight,0.35
+population_projection,omani_growth_base,0.045633306
+population_projection,expat_growth_base,0.036237716
+population_projection,scenario_params,"{'Low': {'omani_growth': 0.04213330582917461, 'expat_growth': 0.02823771557236336}, 'Base': {'omani_growth': 0.04563330582917461, 'expat_growth': 0.03623771557236336}, 'High': {'omani_growth': 0.04913330582917461, 'expat_growth': 0.046237715572363364}}"
+population_projection,anchor_years_observed,"[2022, 2023, 2024, 2025]"
+population_projection,component_split_anchor,"{'year': 2025, 'expat_share_used': 0.5917333333333321}"
+housing,hh_size_source_years,"[2006, 2007, 2008, 2009, 2010, 2018]"
+housing,hh_size_linear_fit,"{'intercept_a': 75.12125000000052, 'slope_b_per_year': -0.033750000000000266}"
+housing,hh_size_clamp,"{'min': 3.5, 'max': 9.0}"
+housing,note,Average household size is Oman-wide (not Muscat-specific) and used as proxy due to data availability in workbook.
