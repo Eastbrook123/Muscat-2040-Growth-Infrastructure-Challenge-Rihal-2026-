@@ -1,0 +1,9 @@
+pandas
+openpyxl
+numpy
+matplotlib
+seaborn
+plotly
+streamlit
+markdown
+reportlab
