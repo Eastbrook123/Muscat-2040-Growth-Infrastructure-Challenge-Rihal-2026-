@@ -1,21 +1,20 @@
 from __future__ import annotations
 
-import io
+import os
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
-from pathlib import Path
 
-import pandas as pd
-import os
-
-BASE_DIR = os.path.dirname(__file__)
-WORKBOOK = os.path.join(BASE_DIR, "MOH_health_units_data.xlsx")
-
-df = pd.read_excel(WORKBOOK)
+# Workbook: try rihal/ (parent) first (GitHub), then streamlit_app/ (local copy)
+_APP_DIR = Path(__file__).resolve().parent
+_RIHAL_DIR = _APP_DIR.parent
+WORKBOOK = str(_RIHAL_DIR / "MOH_health_units_data.xlsx")
+if not Path(WORKBOOK).exists():
+    WORKBOOK = str(_APP_DIR / "MOH_health_units_data.xlsx")
 
 
 
