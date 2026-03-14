@@ -1,33 +1,21 @@
-# Muscat 2040: Growth & Infrastructure Challenge (Rihal 2026)
+# Muscat 2040 — Rihal Project (rihal/)
 
-This folder contains a fully reproducible analysis and an interactive model built from the provided workbook:
+This folder contains the core analysis and interactive model. See the [root README](../README.md) for full documentation.
 
-- `MOH_health_units_data.xlsx`
-
-## What’s included
-
-- **Reproducible tables**: `outputs/tables/*.csv`
-- **Publication-ready charts**: `outputs/figures/*.png`
-- **Interactive model**: `streamlit_app/app.py`
-
-## How to run (Windows / PowerShell)
-
-Install dependencies:
+## Quick run
 
 ```bash
+# From this folder (rihal/)
 python -m pip install -r requirements.txt
-```
-
-Generate tables + charts:
-
-```bash
-python analysis\build_outputs.py
-python -m analysis.make_figures
-```
-
-Run the interactive model:
-
-```bash
 streamlit run streamlit_app\app.py
 ```
 
+## Contents
+
+| Path | Description |
+|------|-------------|
+| `MOH_health_units_data.xlsx` | Source workbook |
+| `analysis/` | Scripts: `build_outputs.py`, `make_figures.py`, `build_pdfs.py` |
+| `outputs/tables/` | CSV exports |
+| `outputs/figures/` | PNG charts |
+| `streamlit_app/` | Interactive dashboard |

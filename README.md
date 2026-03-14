@@ -1,101 +1,147 @@
-This repository contains the full reproducible analysis and an interactive model for the Muscat 2040 Growth & Infrastructure Challenge. The analysis projects population growth to 2040 and estimates healthcare and housing infrastructure demand pressures under three scenarios: Low, Base, and High growth. 📁 Repository Structure Muscat_2040/ │ ├─ MOH_health_units_data.xlsx # Source data used for all calculations ├─ analysis/ # Python scripts for analysis │ ├─ build_outputs.py # Generates CSV tables for population, healthcare, housing │ └─ make_figures.py # Generates publication-ready figures ├─ outputs/ │ ├─ tables/ # Exported scenario data (population, beds, households) │ └─ figures/ # Charts used in reports and executive summary ├─ streamlit_app/ │ └─ app.py # Interactive model for scenario exploration ├─ requirements.txt # Python dependencies for reproducibility └─ README.md # Project documentation 🔎 Project Overview Objective
+# Muscat 2040: Growth & Infrastructure Challenge
 
-Project Muscat Governorate’s population to 2040 under three growth scenarios: Low, Base, High.
+> **Rihal 2026** — Full reproducible analysis and interactive model for Muscat Governorate population projections and infrastructure demand (healthcare, housing, electricity).
 
-Translate population growth into healthcare and housing infrastructure demand.
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Interactive%20Dashboard-FF4B4B.svg)](https://streamlit.io/)
 
-Identify capacity gaps, stress points, and breakpoint years when current infrastructure will be exceeded.
+---
 
-Provide a policy-ready, interactive model that allows stakeholders to adjust assumptions dynamically.
+## Overview
 
-Data
+This repository contains the complete analysis and interactive dashboard for the **Muscat 2040 Growth & Infrastructure Challenge**. It projects Muscat Governorate's population to 2040 under three scenarios (Low, Base, High) and translates growth into **healthcare** and **housing** infrastructure demand pressures.
 
-Primary data: MOH_health_units_data.xlsx
+### Objectives
 
-Muscat population (2002–2025)
+- **Project** Muscat population to 2040 under Low, Base, and High growth scenarios
+- **Translate** population growth into healthcare bed demand and housing household requirements
+- **Identify** capacity gaps, stress indices, and breakpoint years when current infrastructure is exceeded
+- **Provide** a policy-ready, interactive model for stakeholders to adjust assumptions dynamically
 
-Omani vs. expatriate population shares (2022–2024)
+---
 
-Oman household size trends (2006–2018)
+## Repository Structure
 
-MOH beds and manpower (2002–2023)
+```
+Muscat-2040-Rihal/
+├── rihal/
+│   ├── MOH_health_units_data.xlsx    # Source data (population, beds, household size, etc.)
+│   ├── analysis/                     # Python analysis scripts
+│   │   ├── build_outputs.py          # Generates CSV tables (population, healthcare, housing)
+│   │   ├── make_figures.py           # Generates publication-ready figures
+│   │   ├── build_pdfs.py             # Exports executive summary & technical appendix as PDF
+│   │   └── config.py                # Paths and sheet mappings
+│   ├── outputs/
+│   │   ├── tables/                   # Exported scenario data (CSV)
+│   │   ├── figures/                  # Charts (PNG)
+│   │   ├── Muscat_2040_Executive_Summary.pdf
+│   │   └── Muscat_2040_Technical_Appendix_and_Logic.pdf
+│   ├── streamlit_app/
+│   │   ├── app.py                    # Interactive dashboard
+│   │   └── style.css                 # Custom theme and layout
+│   ├── requirements.txt
+│   └── README.md
+└── README.md
+```
 
-Optional context: private clinics, electricity consumption, Oman population distribution
+---
 
-External references: OECD health benchmarks, Oman National Center for Statistics and Information (NCSI)
+## Data Sources
 
-🛠 Methodology
+| Source | Description |
+|--------|-------------|
+| **MOH_health_units_data.xlsx** | Primary workbook: Muscat population (2002–2025), Omani/expat shares (2022–2024), household size (2006–2018), MOH beds & manpower (2002–2023), private clinics, electricity, governorate distribution |
+| [OECD Hospital Beds](https://www.oecd.org/en/data/indicators/hospital-beds.html) | Benchmark definition (3 beds per 1,000 residents) |
+| [OECD Health at a Glance](https://www.oecd.org/en/publications/health-at-a-glance-2023_7a7afb35-en/full-report/hospital-beds-and-occupancy_10add5df.html) | Cross-country context |
+| [Oman NCSI](https://data.ncsi.gov.om/?q=dataset%2Ftotal-population) | Official population data portal |
 
-Population Projection
-Historical CAGR (2002–2022) calculated using Muscat population series.
+---
 
-Component split: Population decomposed into Omani and expatriate groups using recent shares (2022–2024).
+## Methodology
 
-Scenario blending: Long-term CAGR and recent component trends combined to produce Low, Base, High growth rates.
+### Population Projection
 
-Projection period: 2026–2040, with 2022–2025 anchored to observed data.
+- **Historical CAGR** (2002–2022) computed from Muscat population series
+- **Component split**: Omani vs. expatriate using 2022–2024 shares
+- **Scenario blending**: Long-run CAGR + recent component trends → Low, Base, High growth rates
+- **Anchoring**: 2022–2025 use observed totals; 2026–2040 use projected components
 
-Healthcare Demand
-Benchmark: 3 hospital beds per 1,000 residents (OECD standard).
+### Healthcare Demand
 
-MOH capacity assumption: Constant at 2023 observed level (1,608 beds).
+- **Benchmark**: 3 hospital beds per 1,000 residents (OECD planning standard)
+- **Capacity**: MOH Muscat beds held constant at 2023 level (1,608 beds)
+- **Outputs**: Bed demand, gap vs. capacity, stress index (demand/capacity), breakpoint year
 
-Outputs: Bed demand, gap vs capacity, stress index (demand/capacity), and breakpoint year when demand exceeds capacity.
+### Housing Demand
 
-Housing Demand
-Household size: Oman-wide series used as a proxy for Muscat.
+- **Household size**: Oman-wide series as proxy; linear trend extrapolated to 2040 (bounded 3.5–9.0)
+- **Outputs**: Households required by scenario (demand-side)
 
-Method: Linear trend extrapolated to 2040, bounded between 3.5–9.0 persons per household.
+### Interactive Model
 
-Outputs: Number of households required by scenario (demand-side).
+- **Built with Streamlit** — sliders for Omani/expat growth deltas, household size, beds per 1,000
+- **Real-time updates**: Population, healthcare stress, housing demand, electricity proxy
+- **Tabs**: Dashboard, Population, Healthcare, Housing, Electricity, Data export
 
-Interactive Model
-Built with Streamlit to allow dynamic scenario exploration.
+---
 
-Adjustable assumptions include:
+## Quick Start
 
-Population growth rate
+### 1. Clone the repository
 
-Migration rate
+```bash
+git clone https://github.com/Eastbrook123/Muscat-2040-Growth-Infrastructure-Challenge-Rihal-2026-.git
+cd Muscat-2040-Growth-Infrastructure-Challenge-Rihal-2026-/rihal
+```
 
-Average household size
+### 2. Install dependencies
 
-Model updates population projections, healthcare stress, and housing demand in real time.
-
-📌 Reproducibility
-
-Install dependencies
-
+```bash
 python -m pip install -r requirements.txt
+```
 
-Generate outputs
+### 3. Generate tables and figures (optional)
 
-python analysis\build_outputs.py python -m analysis.make_figures
+```bash
+python analysis\build_outputs.py
+python -m analysis.make_figures
+python analysis\build_pdfs.py
+```
 
-Run interactive model
+### 4. Run the interactive dashboard
 
+```bash
 streamlit run streamlit_app\app.py
+```
 
-All outputs are automatically linked to source data and assumptions table (outputs/tables/assumptions_register.csv).
+Then open **http://localhost:8501** in your browser.
 
-Updating assumptions triggers automatic recalculation of tables, charts, and the interactive model.
+---
 
-🎯 Key Features
+## Key Features
 
-Transparent and reproducible workflow from raw data → assumptions → tables → charts → interactive model.
+| Feature | Description |
+|---------|-------------|
+| **Transparent workflow** | Raw data → assumptions → tables → charts → interactive model |
+| **Policy-focused** | Highlights infrastructure bottlenecks and long-term planning implications |
+| **Scenario analysis** | Low, Base, High population growth with adjustable deltas |
+| **Dynamic interactivity** | Change assumptions and see immediate impact on healthcare and housing demand |
+| **Methodology & formulas** | Expandable section with LaTeX formulas and data source links |
+| **Export-ready** | CSV download, PDF executive summary, technical appendix |
 
-Policy-focused: Highlights infrastructure bottlenecks and long-term planning implications.
+---
 
-Scenario analysis: Low, Base, High population growth scenarios.
+## Outputs
 
-Dynamic interactivity: Change assumptions to immediately see the impact on healthcare and housing demand.
+- **Tables**: `outputs/tables/` — population projections, healthcare demand/gap, housing households
+- **Figures**: `outputs/figures/` — population trajectories, bed demand vs. capacity, stress index, households
+- **PDFs**: Executive summary (≤2 pages), technical appendix with assumptions and calculation logic
+- **Interactive model**: Scenario comparison, sensitivity analysis, downloadable results
 
-📄 Outputs
+---
 
-Tables: Population projections, healthcare demand, housing demand, gaps, and stress indices.
+## Acknowledgments
 
-Figures: Population trajectories, healthcare stress index, housing requirements.
-
-Technical appendix: Assumptions, methodology, and calculation logic.
-
-Interactive model: Scenario comparison and sensitivity analysis. Ensures full transparency and reproducibility.
+- **Rihal 2026** for the challenge brief
+- **Oman NCSI** and **OECD** for reference data and benchmarks
+- **Streamlit** and **Plotly** for the interactive visualization stack
